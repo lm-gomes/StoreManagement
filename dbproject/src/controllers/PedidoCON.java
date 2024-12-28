@@ -3,6 +3,7 @@ package controllers;
 import java.util.Scanner;
 
 import models.PedidoDAO;
+import models.ProdutoDAO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +24,6 @@ public class PedidoCON {
         int pedidoProdutos[][] = new int[pedidoQtd][2];
 
         
-
         for(int i = 0; i < pedidoQtd; i++){
             System.out.printf("Digite o ID do produto %d: ", i);
             int produtoId = scanner.nextInt();
@@ -33,11 +33,23 @@ public class PedidoCON {
             pedidoProdutos[i][1] = produtoQtd; 
             
         }
-
-
-        
-
         PedidoDAO.addPedido(pedidoName, simpleDate.format(date), pedidoProdutos);
+    }
 
+     public static void rmPedido(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o ID do pedido: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        PedidoDAO.delPedido(id);
+    }
+
+    public static void detailsPedido(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o ID do pedido: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        PedidoDAO.viewPedido(true, id);
+        
     }
 }

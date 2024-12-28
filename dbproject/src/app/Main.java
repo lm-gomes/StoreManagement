@@ -29,11 +29,25 @@ public class Main {
                     case 1:{
                         System.out.println("[1]Consultar pedidos\n[2]Cadastrar pedido\n[3]Atualizar pedido\n[4]Remover pedido\n>>");
                         userInputMenu = scanner.nextInt();
+                        scanner.nextLine();
                         if(userInputMenu == 1){
-                            PedidoDAO.viewPedido();
+                            PedidoDAO.viewPedido(false, 0);
+                            System.out.println("[1]Detalhes do pedido \\ [0]Voltar\n>");
+                            userInputMenu = scanner.nextInt();
+                            if(userInputMenu == 1){
+                                PedidoCON.detailsPedido();
+                                
+                            }
                         }
                         else if(userInputMenu == 2){
                             PedidoCON.newPedido();
+                            System.out.println("Pedido adicionado!\n");
+                        }
+
+                        else if(userInputMenu == 4){
+                            PedidoCON.rmPedido();
+                            System.err.println("Pedido removido!");
+
                         }
                         break;
                     }
